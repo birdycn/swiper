@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>HTML5开发</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css" rel="stylesheet">
+    <link href="http://bridy.coding.me/swiper/css/animate.min.css" rel="stylesheet" />
+    <link href="http://bridy.coding.me/swiper/css/loading.css" rel="stylesheet" />
+    <style type="text/css">
+        @-webkit-keyframes reverseRotataZ {
+            0% {
+                -webkit-transform: rotateZ(0deg);
+            }
+            50% {
+                -webkit-transform: rotateZ(-360deg);
+            }
+            100% {
+                -webkit-transform: rotateZ(360deg);
+            }
+        }
+
+        #musicControl {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            margin-top: 0;
+            display: inline-block;
+            z-index: 99999999
+        }
+
+        #musicControl a {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            overflow: hidden;
+            background: url('http://cms-bucket.nosdn.127.net/3e68bc93eba1452888bcc1330624e8fd20171030095318.png') no-repeat;
+            background-size: 100%;
+        }
+
+        #musicControl a audio {
+            width: 100%;
+        }
+
+        #musicControl a.stop {
+            background-position: left bottom;
+        }
+
+        #musicControl a.on {
+            background-position: 0px 1px;
+            -webkit-animation: reverseRotataZ 2.4s linear infinite;
+        }
+    </style>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-size: 20px;
+            color: red;
+        }
+
+        .wrapper {
+            position: relative;
+            max-width: 600px;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
+
+        .swiper-slide {
+            background-size: 100% 100%;
+            background-size: 100%;
+        }
+
+        .swiper-button-next {
+            background-image: url(http://bridy.coding.me/swiper/img/icon_up.png);
+            background-size: 80%;
+            top: 95%;
+            left: 50%;
+            animation: fadeInUp ease 1s both infinite;
+        }
+    </style>
+    <script src="http://bridy.coding.me/swiper/js/jquery-2.1.4.min.js"></script>
+    <script src="http://bridy.coding.me/swiper/js/swiper.min.js"></script>
+    <script src="http://bridy.coding.me/swiper/js/swiper.animate.min.js"></script>
+    <script src="http://bridy.coding.me/swiper/js/swiper.animate.param.js"></script>
+    <script language="javascript">
+        // 在全局范围内创建主动画控制器与子动画控制器
+        var myAC_main1 = new animateControl("main1_ani_");
+
+        // 在文档结构加载完成之后，载入swiper幻灯片，并初始化所有的动画控制器
+        $(document).ready(function () {
+            // 主swiper幻灯片
+            var mySwiper = new Swiper('.swiper-container-main1', {
+                direction: 'vertical',
+                grabCursor: true,
+                loop: true,
+                nextButton: '.swiper-button-next',
+                onInit: function (swiper) {
+                    myAC_main1.init(swiperAnimateParam_main1, swiper);
+
+                    //myAC_main1.play(); // 如果页面中未使用Loading效果，则必须取消本行代码的注释，以开启myAC_main1主动画控制器中动画的播放
+                },
+                onSlideChangeEnd: function (swiper) {
+                    myAC_main1.play();
+                },
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <div class="swiper-container swiper-container-main1">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image: url(http://cms-bucket.nosdn.127.net/80d87db21d7d4daaada889b6b32e942620171030130251.jpeg);">
+                1234s5</div>
+            <div class="swiper-slide" style="background-image: url(http://cms-bucket.nosdn.127.net/80d87db21d7d4daaada889b6b32e942620171030130251.jpeg);">
+                1234s5</div>
+            <div class="swiper-slide" style="background-image: url(http://cms-bucket.nosdn.127.net/80d87db21d7d4daaada889b6b32e942620171030130251.jpeg);">
+                1234s5</div>
+            <div class="swiper-slide" style="background-image: url(http://cms-bucket.nosdn.127.net/80d87db21d7d4daaada889b6b32e942620171030130251.jpeg);">
+                1234s5</div>
+        </div>
+        <div class="swiper-button-next"></div>
+    </div>
+</body>
+
+</html>
